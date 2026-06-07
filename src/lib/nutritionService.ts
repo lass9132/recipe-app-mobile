@@ -15,9 +15,14 @@ const CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000 // 30 dage
 const LOCAL_DB: Array<{ keys: string[]; facts: NutritionFacts }> = [
   // --- Kød ---
   { keys: ['kylling', 'chicken'], facts: { kcal: 115, protein: 23, carbs: 0, fat: 2.5 } },
-  { keys: ['oksekød', 'oksefarsen', 'hakkede oksekød', 'beef', 'bøf'], facts: { kcal: 215, protein: 18, carbs: 0, fat: 16 } },
-  { keys: ['svinekød', 'svine', 'pork'], facts: { kcal: 242, protein: 17, carbs: 0, fat: 19 } },
-  { keys: ['bacon'], facts: { kcal: 460, protein: 12, carbs: 0.5, fat: 45 } },
+  { keys: ['oksekød', 'oksemørbrad', 'oksefarsen', 'hakkede oksekød', 'beef', 'bøf'], facts: { kcal: 215, protein: 18, carbs: 0, fat: 16 } },
+  { keys: ['svinemørbrad', 'mørbrad'], facts: { kcal: 115, protein: 22.3, carbs: 0, fat: 1.9 } },
+  { keys: ['minutkotelet', 'svinekotelet', 'kotelet'], facts: { kcal: 110, protein: 22.5, carbs: 0, fat: 2 } },
+  { keys: ['hakket svinekød', 'svinefars', 'hakket grisekød', 'grisefars'], facts: { kcal: 166, protein: 19, carbs: 0, fat: 10 } },
+  { keys: ['flæskesteg', 'flæsk'], facts: { kcal: 268, protein: 18.3, carbs: 0.1, fat: 21.7 } },
+  { keys: ['svinekød', 'svine', 'pork'], facts: { kcal: 160, protein: 21, carbs: 0, fat: 8 } },
+  { keys: ['skinke', 'skinkekød', 'kogeskinke'], facts: { kcal: 115, protein: 18, carbs: 1, fat: 4 } },
+  { keys: ['bacon'], facts: { kcal: 260, protein: 15, carbs: 0, fat: 23 } },
   { keys: ['laks', 'salmon'], facts: { kcal: 208, protein: 20, carbs: 0, fat: 13 } },
   { keys: ['torsk', 'cod'], facts: { kcal: 82, protein: 18, carbs: 0, fat: 0.7 } },
   { keys: ['rejer', 'shrimp'], facts: { kcal: 85, protein: 18, carbs: 0.9, fat: 1 } },
@@ -36,6 +41,7 @@ const LOCAL_DB: Array<{ keys: string[]; facts: NutritionFacts }> = [
   { keys: ['parmesan'], facts: { kcal: 392, protein: 36, carbs: 3.2, fat: 26 } },
   { keys: ['cheddar'], facts: { kcal: 402, protein: 25, carbs: 1.3, fat: 33 } },
   { keys: ['fetaost', 'feta'], facts: { kcal: 264, protein: 14, carbs: 4, fat: 21 } },
+  { keys: ['flødeost', 'philadelphia', 'cream cheese'], facts: { kcal: 250, protein: 6, carbs: 4, fat: 24 } },
   { keys: ['ost', 'cheese'], facts: { kcal: 360, protein: 24, carbs: 1.5, fat: 29 } },
   { keys: ['æg', 'egg'], facts: { kcal: 147, protein: 13, carbs: 1.1, fat: 10 } },
   { keys: ['yoghurt'], facts: { kcal: 61, protein: 3.5, carbs: 4.7, fat: 3.3 } },
@@ -46,7 +52,7 @@ const LOCAL_DB: Array<{ keys: string[]; facts: NutritionFacts }> = [
   { keys: ['løg', 'onion'], facts: { kcal: 40, protein: 1.1, carbs: 9.3, fat: 0.1, fiber: 1.7 } },
   { keys: ['hvidløg', 'garlic'], facts: { kcal: 149, protein: 6.4, carbs: 33, fat: 0.5 } },
   { keys: ['hakkede tomater', 'dåsetomater'], facts: { kcal: 24, protein: 1.2, carbs: 4.5, fat: 0.2, fiber: 1.5 } },
-  { keys: ['tomatpure', 'tomat pure', 'tomato paste', 'koncentreret tomat'], facts: { kcal: 82, protein: 3.5, carbs: 15, fat: 0.5 } },
+  { keys: ['tomatpure', 'tomatpuré', 'tomatpasta', 'tomat pure', 'tomato paste', 'koncentreret tomat'], facts: { kcal: 82, protein: 3.5, carbs: 15, fat: 0.5 } },
   { keys: ['tomat', 'tomato'], facts: { kcal: 18, protein: 0.9, carbs: 3.9, fat: 0.2, fiber: 1.2 } },
   { keys: ['spinat', 'spinach'], facts: { kcal: 23, protein: 2.9, carbs: 3.6, fat: 0.4, fiber: 2.2 } },
   { keys: ['gulerod', 'gulerødder', 'carrot'], facts: { kcal: 41, protein: 0.9, carbs: 10, fat: 0.2, fiber: 2.8 } },
@@ -169,7 +175,7 @@ function normalizeIngredientName(name: string): string {
     .toLowerCase()
     .replace(/,.*$/, '')           // fjern alt efter komma: "Oregano, tørret" → "oregano"
     .replace(/\d+\s*g\b/gi, '')   // fjern vægtangivelser: "400g" → ""
-    .replace(/\b(uden|med|efter|til|ca|ca\.|tørret|frisk|frost|frosset|helbladet|hakket|revet|skåret|finthakket|grofthakket|skrællet|pillet|koncentreret|smag|behov|let|usaltede|usaltet|vægt)\b/gi, '')
+    .replace(/\b(uden|med|efter|til|ca|ca\.|tørret|frisk|frost|frosset|helbladet|revet|skåret|finthakket|grofthakket|skrællet|pillet|smag|behov|let|usaltede|usaltet|vægt)\b/gi, '')
     .replace(/\s+/g, ' ')
     .trim()
 }
