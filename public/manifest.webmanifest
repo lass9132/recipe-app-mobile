@@ -1,0 +1,19 @@
+{
+  "name": "Opskrifter",
+  "short_name": "Opskrifter",
+  "description": "Din lokale opskriftssamling med søgning, næringsberegning og madplan.",
+  "lang": "da",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
