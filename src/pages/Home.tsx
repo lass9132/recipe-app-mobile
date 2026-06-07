@@ -33,7 +33,7 @@ export function Home() {
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
 
       {/* Sticky søge- og filterpanel */}
-      <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 sticky top-14 z-10">
+      <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 sticky top-[calc(3.5rem_+_env(safe-area-inset-top))] z-10">
 
         {/* Søgerække */}
         <div className="max-w-6xl mx-auto px-4 py-3">

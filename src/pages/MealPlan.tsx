@@ -153,7 +153,7 @@ export function MealPlan() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
       {/* Header */}
-      <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 sticky top-0 z-10">
+      <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 sticky top-[calc(3.5rem_+_env(safe-area-inset-top))] z-10">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" onClick={() => changeWeek(-1)}>

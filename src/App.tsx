@@ -66,7 +66,7 @@ function Nav() {
   }
 
   return (
-    <nav className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-4 sticky top-0 z-20">
+    <nav className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-4 sticky top-0 z-20 pt-[env(safe-area-inset-top)]">
       <div className="max-w-6xl mx-auto flex items-center h-14 gap-2">
 
         {/* Logo — klikbart til forsiden */}
